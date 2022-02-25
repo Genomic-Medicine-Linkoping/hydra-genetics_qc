@@ -39,4 +39,4 @@ rule mosdepth:
     message:
         "{rule}: Calculating coverage for {wildcards.sample}_{wildcards.type}"
     wrapper:
-        "0.80.2/bio/mosdepth"
+        "v1.2.0/bio/mosdepth"
