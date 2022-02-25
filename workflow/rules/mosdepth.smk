@@ -17,6 +17,7 @@ rule mosdepth:
     params:
         by=config.get("mosdepth", {}).get("by", ""),
         extra=config.get("mosdepth", {}).get("extra", ""),
+        bed=config.get("mosdepth", {}).get("bed", ""),
     log:
         "qc/mosdepth/{sample}_{type}.log",
     benchmark:

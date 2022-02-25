@@ -79,6 +79,9 @@ properties:
       extra:
         type: string
         description: extra flags passed to mosdepth
+      bed:
+        type: string
+        descripton: region of intrest to run mosdepth on
 
   multiqc:
     type: object

@@ -11,7 +11,8 @@ mosdepth:
   by: ""
   container: "docker://hydragenetics/mosdepth:0.3.2"
   extra: ""
-  
+  bed: ""
+
 multiqc:
   container: "docker://hydragenetics/multiqc:1.11"
   qc_files:
