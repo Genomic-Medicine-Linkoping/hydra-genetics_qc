@@ -48,6 +48,8 @@ rule samtools_idxstats:
         bai="alignment/merge_bam/{sample}_{type}.bam.bai",
     output:
         temp("qc/samtools_idxstats/{sample}_{type}.samtools-idxstats.txt"),
+    params:
+        extra="%s" % config.get("samtools_stats", {}).get("extra", ""),
     log:
         "qc/samtools_stats/{sample}_{type}.samtools-idxstats.txt.log",
     benchmark:
