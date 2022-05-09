@@ -9,11 +9,11 @@ __license__ = "GPL-3"
 
 include: "rules/common.smk"
 include: "rules/fastqc.smk"
-include: "rules/hotspot_info.smk"
-include: "rules/mosdepth.smk"
 include: "rules/multiqc.smk"
-include: "rules/picard.smk"
-include: "rules/samtools_stats.smk"
+# include: "rules/hotspot_info.smk"
+# include: "rules/mosdepth.smk"
+# include: "rules/picard.smk"
+# include: "rules/samtools_stats.smk"
 
 
 report: "report/workflow.rst"

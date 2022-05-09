@@ -65,3 +65,40 @@ def compile_output_list(wildcards):
     ]
     output_files.append("qc/multiqc/multiqc.html")
     return output_files
+
+
+def get_unit_for_fastqc(units: pandas.DataFrame, wildcards: snakemake.io.Wildcards) -> pandas.Series:
+    """
+    function used to extract one unit(row) from units.tsv
+    Args:
+        units: DataFrame generate by importing a file following schema defintion
+               found in pre-alignment/workflow/schemas/units.schema.tsv
+        wildcards: wildcards object with at least the following wildcard names
+               sample, type, flowcell, and lane
+    Returns:
+        Series containing data of the selected row
+    Raises:
+        raises an exception (KeyError) if no unit can be extracted from the Dataframe
+    """
+    unit = units.loc[(wildcards.sample, wildcards.type)].dropna()
+    return unit
+
+
+def get_fastq_file_for_fastqc(units: pandas.DataFrame, wildcards: snakemake.io.Wildcards, read_pair: str = "fastq1") -> str:
+    """
+    function used to extract path for one unit(row) from units.tsv
+    Args:
+        units: DataFrame generate by importing a file following schema defintion
+               found in pre-alignment/workflow/schemas/units.schema.tsv
+        wildcards: wildcards object with at least the following wildcard names
+               sample, type, flowcell, and lane
+        read_pair: fast1 or fastq2
+    Returns:
+        path for fastq file as a str
+    Raises:
+        raises an exception (KeyError) if no unit can be extracted from the Dataframe
+    """
+    unit = get_unit_for_fastqc(units, wildcards)
+    if read_pair not in ["fastq1", "fastq2"]:
+        raise ValueError("Incorrect input value error {}: expected {} or {}".format(read_pair, "fastq1", "fastq2"))
+    return unit[read_pair]
